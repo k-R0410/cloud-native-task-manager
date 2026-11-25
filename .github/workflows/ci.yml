@@ -34,3 +34,8 @@ jobs:
       # Step 4: Run automated tests
       - name: Run tests
         run: python -m pytest -v
+
+
+      # Step 5: Build Docker image
+      - name: Build Docker image
+        run: docker build -f docker/Dockerfile -t cloud-native-task-manager:latest .
