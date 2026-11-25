@@ -1,0 +1,36 @@
+
+name: Flask API CI
+
+# Run this workflow when code is pushed or a pull request is opened
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Flask API Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download the project source code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      # Step 3: Install project dependencies and pytest
+      - name: Install dependencies
+        run: pip install -r app/requirements-dev.txt
+
+      # Step 4: Run automated tests
+      - name: Run tests
+        run: python -m pytest -v
